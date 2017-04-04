@@ -46,14 +46,14 @@
         initModal();
     });
     function create(name, origin) {
-        $.post("/api/whiskies", JSON.stringify({name: name, origin: origin}), function () {
+        $.post("/api/orderItem", JSON.stringify({name: name, origin: origin}), function () {
             load();
         }, "json");
     }
     function remove(id) {
         $.ajax({
             method: "DELETE",
-            url: "/api/whiskies/" + id
+            url: "/api/orderItem/" + id
         }).done(function () {
             load();
         });
@@ -61,7 +61,7 @@
     function update(id, name, origin) {
         $.ajax({
             method: "PUT",
-            url: "/api/whiskies/" + id,
+            url: "/api/orderItem/" + id,
             data: JSON.stringify({name: name, origin: origin})
         }).done(function () {
             load();
@@ -69,7 +69,7 @@
     }
     function load() {
         $("#content").children().remove();
-        $.getJSON("/api/whiskies", function (data) {
+        $.getJSON("/api/orderItem", function (data) {
             $.each(data, function (key, val) {
                 $("<tr><td>" + val.id + "</td><td>" + val.name + "</td><td>" + val.origin + "</td>" +
                         "<td>" +
@@ -130,7 +130,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-                <h4 class="modal-title" id="productModalTitle">Add a bottle</h4>
+                <h4 class="modal-title" id="productModalTitle">Add a Item</h4>
             </div>
             <div class="modal-body">
                 <form>

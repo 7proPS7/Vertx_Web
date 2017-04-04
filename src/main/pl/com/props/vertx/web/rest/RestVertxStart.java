@@ -30,12 +30,15 @@ public class RestVertxStart extends AbstractVerticle {
 
 		Router router = Router.router(vertx);
 
+
+
 		router.route("/").handler(routingContext -> {
 			HttpServerResponse response = routingContext.response();
 			response.putHeader("content-type", "text/html").end("<h2>Web vertx app</h2>");
 		});
 
 		router.route("/assets/*").handler(StaticHandler.create("assets"));
+		
 
 		vertx.createHttpServer().requestHandler(router::accept).listen(config().getInteger("http.port", 8080),
 				result -> {
